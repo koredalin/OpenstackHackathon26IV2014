@@ -1,0 +1,32 @@
+<IfModule mod_rewrite.c>
+ 
+    RewriteEngine On
+    RewriteBase /oshackathon/
+    
+    ###
+
+    # Test Netbeans configuration 1
+
+    #Options +FollowSymLinks
+    #Options -Indexes
+    #DirectoryIndex index.php
+    #RewriteEngine on
+    RewriteCond $1 !^(index\.php|images|styles|scripts|robots\.txt|favicon\.ico)
+    #RewriteCond %{REQUEST_FILENAME} !-f
+    #RewriteCond %{REQUEST_FILENAME} !-d
+    #RewriteRule ^(.*)$ index.php?/$1 [L,QSA]
+
+# condition with escaping special chars
+RewriteCond $1 !^(index\.php|robots\.txt|favicon\.ico)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ ./index.php/$1 [L,QSA]
+
+</IfModule>
+ 
+<IfModule !mod_rewrite.c>
+ 
+    # Without mod_rewrite, route 404's to the front controller
+    ErrorDocument 404 /index.php
+ 
+</IfModule>

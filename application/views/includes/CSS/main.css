@@ -1,0 +1,109 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2014-3-11, 16:18:21
+    Author     : koredalin
+*/
+
+.title-links {}
+
+.x-large {font-size: x-large;}
+.green {color: green;}
+.blue {color: blue;}
+.bold {font-weight: bold;}
+.display-block {display: block;}
+.display-none {display: none;}
+.display-inline-block {display: inline-block;}
+.text-center {text-align: center;}
+.text-left {text-align: left;}
+.float-left {float: left;}
+.float-right {float: right;}
+
+// html, body {width: 100%}
+
+.page-container {width: 100%; text-align: center;}
+.application-container {
+    width: 70%;
+    dislplay: table; 
+    margin: 0 auto;
+}
+
+.content-quiz {border: 3px solid black; display: inline-block; width: 350px;}
+
+.action-buttons {margin-top: 3px;}
+.mainQuoteBtn {width: 48%; background: #eee; border: 1px solid #999;}
+.quoteQuizBtn {width: 48%; background: #eee; border: 1px solid #999;}
+
+.yesBtn {margin-left: 20px;}
+.noBtn {margin-right: 20px;}
+.nextBtn {margin-right: 40px;}
+.getResultBtn {margin-right: 25px;}
+
+.content-quiz {
+}
+.description {
+    border:2px solid #22f;
+    background:#eef;
+    width:90%;
+    border-radius:15px;
+}
+.result-true {
+    border:2px solid #22ff22;
+    background:#bfb;
+    width:80%;
+    border-radius:15px;
+    margin: 15px 0 15px 0;
+}
+.result-false {
+    border:2px solid #ff2222;
+    background:#ffdddd;
+    width:90%;
+    border-radius:15px;
+    margin: 15px 0 15px 0;
+}
+.result-final {
+    border:2px solid #999;
+    background:#eee;
+    width:80%;
+    border-radius:15px;
+    margin: 15px 0 15px 0;
+}
+
+footer {
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+.div-text {height: 40px;}
+.margin-tb-10 {margin: 10px 0 10px 0;}
+
+.under_line {border-bottom: 1px solid grey}
+
+.hcenter {margin: 0 auto;}
+
+.auto_scroll-swift {
+    overflow-y:scroll;
+    height: 400px;
+}
+
+.auto_scroll-container {
+    overflow-y:scroll;
+    height: 450px;
+}
+
+.upload_fail {
+    background-color: #f88;
+    border-radius: 10px;
+    border: 1px solid #444;
+}
+ 
+.upload_success {
+    background-color: #8f8;
+    border-radius: 10px;
+    border: 1px solid #444;
+}
