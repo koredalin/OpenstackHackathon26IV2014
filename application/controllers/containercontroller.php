@@ -29,12 +29,7 @@ class ContainerController extends MY_MainController {
     
     public function getObjectsList($container='') {
         $objects=$this->model->getobjects($container);
-        $object_links='';
-        foreach ($objects as $key => $object) {
-            if ($object) {
-            $object_links.= '<p><a href="'.$this->data['baseDirectory'].'object/select/'.$container . '/' . $object.'">'.$object.'</a></p>';
-            }
-        }
+        $object_links = $this->formatLinks($container, $objects, 4);
         $this->data['object_links']=$object_links;
     }
     
@@ -42,4 +37,39 @@ class ContainerController extends MY_MainController {
         $this->data['upload_result']=$this->model->uploadFile($container);
         $this->select($container);
     }
+    
+    public function formatLinks($container, $links, $cols_num) {
+        --$cols_num;
+        $object_links='';
+        $col_count=-1;
+        foreach ($links as $object) {
+            $col_count===$cols_num ? $col_count=0 : $col_count++;
+            if ($col_count===0) {
+                $object_links.= '<p>';
+            }
+            if ($object) {
+                $object_links.= '<span class="contname_width"><a href="'.$this->data['baseDirectory']. 
+                        'object/select/'.$container. '/' . $object.'">'.$object.'</a></span>';
+            }
+            if ($col_count===$cols_num) {
+                $object_links.= '</p>';
+            }
+            else {
+                $object_links.=' || ';
+            }
+        } 
+        if ($col_count<$cols_num) {
+            $object_links= substr_replace($object_links, '</p>', -8, 8);
+        }
+        
+        return $object_links;
+
+    }
 }
+        
+        
+//        foreach ($objects as $key => $object) {
+//            if ($object) {
+//            $object_links.= '<p><a href="'.$this->data['baseDirectory'].'object/select/'.$container . '/' . $object.'">'.$object.'</a></p>';
+//            }
+//        }

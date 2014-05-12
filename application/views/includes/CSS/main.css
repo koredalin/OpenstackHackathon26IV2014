@@ -26,8 +26,8 @@ and open the template in the editor.
 
 .page-container {width: 100%; text-align: center;}
 .application-container {
-    width: 70%;
-    dislplay: table; 
+    width: 90%;
+    // dislplay: table; 
     margin: 0 auto;
 }
 
@@ -106,4 +106,14 @@ footer {
     background-color: #8f8;
     border-radius: 10px;
     border: 1px solid #444;
+}
+
+.contname_width {
+    width: 120px;
+    display: inline-block;
+}
+
+.objname_width {
+    width: 120px;
+    display: inline-block;
 }

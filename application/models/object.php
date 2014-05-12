@@ -18,8 +18,6 @@ class Object extends MY_MainModel {
             redirect('/swift/getContainersList');
         }
         $container = trim($container);
-//        echo '$container: '. $container.'<br />';
-//        echo '$os_token: ' . $this->os_token;
         $ch = curl_init($this->userdata['os_swift_link'] . '/' . $container . '/' . $object);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -27,10 +25,8 @@ class Object extends MY_MainModel {
         curl_setopt($ch, CURLOPT_HTTPHEADER, array(
             'X-Auth-Token: ' . $this->userdata['os_token'])
         );
-
         $result = curl_exec($ch);
-//        var_dump($result);
-//        exit;
+        
         return $result;
     }
 
@@ -47,7 +43,6 @@ class Object extends MY_MainModel {
             redirect('/swift/getContainersList');
         }
         $container = trim($container);
-        // echo $this->userdata['os_swift_link'] . '/' . $container.'/'.$object.'<br />';
         $ch = curl_init($this->userdata['os_swift_link'] . '/' . $container . '/' . $object);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -60,13 +55,7 @@ class Object extends MY_MainModel {
             'Range: bytes=0-60',
             'X-Auth-Token: ' . $this->userdata['os_token'])
         );
-
-        //$info = curl_getinfo($ch);
         $result = curl_exec($ch);
-        //var_dump($info);
-        // var_dump($result);
-//        var_dump($file_name);
-//        exit;
         return $result;
     }
 
@@ -76,7 +65,6 @@ class Object extends MY_MainModel {
         }
         $file_name = '';
         $text_temp = '';
-        // echo '$text: ' . $text . '<br />';
         $text_temp = str_replace('filename:', '|||', $text);
         $text_temp = str_replace('Content-Length', '|||', $text_temp);
         $file_name = explode('|||', $text_temp);

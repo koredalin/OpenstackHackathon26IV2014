@@ -23,12 +23,7 @@ class SwiftController extends MY_MainController {
 
     public function getContainersList() {
         $containers=$this->model->getContainers();
-        $container_links='';
-        foreach ($containers as $key => $container) {
-            if ($container) {
-            $container_links.= '<p><a href="'.$this->data['baseDirectory'].'container/select/'.$container.'">'.$container.'</a></p>';
-            }
-        }
+        $container_links = $this->formatLinks($containers, 3);
         $this->data['container_links']=$container_links;
         $this->index();
     }
@@ -42,4 +37,30 @@ class SwiftController extends MY_MainController {
         $this->getContainersList();
     }
 
+    public function formatLinks($links, $cols_num) {
+        --$cols_num;
+        $container_links='';
+        $col_count=-1;
+        foreach ($links as $key => $container) {
+            $col_count===$cols_num ? $col_count=0 : $col_count++;
+            if ($col_count===0) {
+                $container_links.= '<p>';
+            }
+            if ($container) {
+                $container_links.= '<span class="contname_width"><a href="'.$this->data['baseDirectory']. 
+                        'container/select/'.$container.'">'.$container.'</a></span>';
+            }
+            if ($col_count===$cols_num) {
+                $container_links.= '</p>';
+            }
+            else {
+                $container_links.=' || ';
+            }
+        } 
+        if ($col_count<$cols_num) {
+            $container_links= substr_replace($container_links, '</p>', -8, 8);
+        }
+        
+        return $container_links;
+    }
 }
