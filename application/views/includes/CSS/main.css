@@ -109,11 +109,21 @@ footer {
 }
 
 .contname_width {
-    width: 120px;
+    width: 130px;
     display: inline-block;
 }
 
 .objname_width {
     width: 120px;
     display: inline-block;
+}
+
+.list p:nth-child(even) span {
+    background: #dadada;
+}
+
+.validation_fail {
+    background-color: #f88;
+    border-radius: 10px;
+    // border: 1px solid #444;
 }

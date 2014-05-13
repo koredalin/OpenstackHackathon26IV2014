@@ -56,20 +56,27 @@ class Container extends MY_MainModel {
         return $containers;
     }
 
-    public function uploadFile($container = '') {
+    public function uploadFile($container = '', $object_name) {
         if (!$container || !isset($_FILES['file_upload_name']) || !isset($_FILES['file_upload_name']) ||
                 !$_FILES['file_upload_name']['name'] || !$this->input->post('object_name')) {
             redirect('/swift/getContainersList');
         }
 
-        // var_dump($_FILES);
-        $filename = $_FILES['file_upload_name']['name'];
-        $object_name = $this->input->post('object_name');
         $filedata = $_FILES['file_upload_name']['tmp_name'];
         $filesize = filesize($filedata);
-        $filename=str_replace(' ', '_', $filename);
+        // Filesize validation
+        if ($filesize > 20971520) {
+            unlink($filedata);
+            return 'Error: Too large file for upload! Maximum size is 20MB.';
+        }
+        // Sanitizing the file name
+        $filename = trim($_FILES['file_upload_name']['name']);
+        $filename = preg_replace('/[^a-zA-Z0-9\.\-]/', '_', $filename);
+        // Configuring upload properties
+        $object_name = $object_name;
         $target_url = $this->userdata['os_swift_link'] . '/' . $container . '/' . $object_name;
         $file_upload_path = '/home/master/public_html/oshackathon/temp_files/' . $filename;
+        // Moves the uploaded file to the framework temp files direcctory
         $upload_to_server = move_uploaded_file($filedata, $file_upload_path);
         $result['upload_to_server'] = $upload_to_server;
 
@@ -93,9 +100,20 @@ class Container extends MY_MainModel {
         curl_close($ch);
 //        var_dump($cloud_responce);
 //        exit;
-        
+
         $cloud_responce === '' ? $result['cloud_responce'] = true : $result['cloud_responce'] = false;
         return $result;
+    }
+
+    public function unlinkTempFile() {
+        if (!isset($_FILES['file_upload_name']) || !isset($_FILES['file_upload_name']) ||
+                !$_FILES['file_upload_name']['name']) {
+            return false;
+        }
+        $filedata = $_FILES['file_upload_name']['tmp_name'];
+        unlink($filedata);
+
+        return true;
     }
 
 }

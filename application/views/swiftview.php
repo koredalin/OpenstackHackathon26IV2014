@@ -23,12 +23,21 @@
         </table>
     </form>
 </div>
-<div class="auto_scroll-swift">
+
+<div class="validation_fail">
+    <?php
+    if (isset($validation_error)) {
+        echo $validation_error;
+    }
+    ?>
+</div>
 <div class="under_line"></div>
-<div>
-    <p>Containers list:</p>
-</div>
-<div>
-    <?php echo $container_links; ?>
-</div>
+<div class="auto_scroll-swift">
+
+    <div>
+        <p>Containers list:</p>
+    </div>
+    <div class="list">
+        <?php echo $container_links; ?>
+    </div>
 </div>

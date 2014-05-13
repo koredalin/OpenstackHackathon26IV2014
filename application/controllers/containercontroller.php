@@ -34,8 +34,33 @@ class ContainerController extends MY_MainController {
     }
     
     public function uploadFile($container='') {
-        $this->data['upload_result']=$this->model->uploadFile($container);
+        $object_name = $this->validateNewObjectName();
+        if ($object_name) {
+            $upload_result=$this->model->uploadFile($container, $object_name);
+            if ($upload_result==='Error: Too large file for upload! Maximum size is 20MB.') {
+                $this->data['validation_error'] = $upload_result;
+            }
+            else {
+                $this->data['upload_result'] = $upload_result;
+            }
+        }
+        else {
+            $this->model->unlinkTempFile();
+        }
+        
         $this->select($container);
+    }
+    
+    public function validateNewObjectName() {
+        $this->load->library('form_validation');
+        $validation = $this->form_validation;
+        $validation->set_rules('object_name', 'Object_name', 'trim|required|min_length[3]|max_length[20]|alpha_dash');
+        if ($validation->run() == FALSE) {
+            $this->data['validation_error'] = 'The new object\'s name should be between 3 and 20 alpha-numeric symbols!';
+            return '';
+        } else {
+            return trim($this->input->post('object_name'));
+        }
     }
     
     public function formatLinks($container, $links, $cols_num) {
