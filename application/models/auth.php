@@ -23,4 +23,15 @@ class Auth extends MY_MainModel {
         return $result;
     }
     
+    
+    //Clears all temp files older than 30 minutes
+    public function clearTempFiles() {
+        $command = 'find /temp/upload_files -type f -mmin +30 -exec rm {} \;';
+        shell_exec($command);
+        $command = 'find /home/master/public_html/oshackathon/temp_files -type f -mmin +30 -exec rm {} \;';
+        shell_exec($command);
+        
+        return true;
+    }
+    
 }

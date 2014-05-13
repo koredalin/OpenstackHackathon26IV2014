@@ -51,6 +51,7 @@ class AuthController extends MY_MainController {
         }
         $this->nativesession->set('userdata', $userdata);
         // var_dump($this->nativesession->get('userdata'));
+        $this->model->clearTempFiles();
         redirect('/swift/getContainersList');
     }
 

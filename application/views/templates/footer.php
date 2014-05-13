@@ -7,13 +7,12 @@
 
     </div>
 </div>
+
+<div class="height_distance"></div>
+
 <footer class="footer">
     <div>
-        <p>&copy; Hristo Hristov / Last update: 
-            <?php 
-            $lastUpdate=isset($lastUpdate) ? $lastUpdate : 'No date set.'; 
-            echo $lastUpdate;
-            ?>
+        <p>&copy; Hristo Hristov / <a href="mailto:koredalin@gmail.com">koredalin@gmail.com</a>
         </p>
     </div>
 </footer>
