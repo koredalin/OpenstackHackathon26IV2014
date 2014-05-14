@@ -71,7 +71,7 @@ class Container extends MY_MainModel {
         }
         // Sanitizing the file name
         $filename = trim($_FILES['file_upload_name']['name']);
-        $filename = preg_replace('/[^a-zA-Z0-9\.\-]/', '_', $filename);
+        $filename = preg_replace('/[^a-zA-Z0-9а-яА-Я\.\-]/', '_', $filename);
         // Configuring upload properties
         $object_name = $object_name;
         $target_url = $this->userdata['os_swift_link'] . '/' . $container . '/' . $object_name;

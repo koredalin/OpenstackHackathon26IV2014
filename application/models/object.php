@@ -79,8 +79,14 @@ class Object extends MY_MainModel {
         if (!$container || !$object || !$file_name) {
             redirect('/swift/getContainersList');
         }
+//        echo '$file_name: '.$file_name.'<br />';
+//        $bg_name = urldecode($file_name);
+//        echo '$bg_name: '.$bg_name.'<br />';
+        
         $session = curl_init($this->userdata['os_swift_link'] . '/' . $container . '/' . $object);
-        $logfh = fopen($this->temp_folder . $container . '---' . $object . '---' . $file_name, 'w+');
+        
+        $fname = urldecode($this->temp_folder . $container . '---' . $object . '---' . $file_name);
+        $logfh = fopen($fname, 'w+');
         if ($logfh !== false) {
             print "Opened the log file without errors";
         }
@@ -91,6 +97,7 @@ class Object extends MY_MainModel {
             'X-Auth-Token: ' . $this->userdata['os_token'])
         );
         $result = curl_exec($session);
+        // var_dump($result);
         curl_close($session);
         fclose($logfh);
         return $result;
@@ -109,13 +116,20 @@ class Object extends MY_MainModel {
             echo 'There is no file for head clearing';
             return false;
         }
+        $file_name= urldecode($file_name);
         $file_path=$this->temp_folder . $container . '---' . $object . '---' . $file_name;
+        // echo '$file_path: '. $file_path.'<br>';
         $dataFile = file_get_contents($file_path);
-        if (strpos($dataFile, '------------------------------') === 0) {
+        $file_header = substr($dataFile, 0, 300);
+        // echo '$file_header: '.$file_header.'<br>';
+        // echo 'strpos_res: '.strpos($file_header, '------------------------------').'<br>';
+        if (strpos($file_header, '------------------------------') === 0) {
+            echo 'Sanitizing file. <br>';
             $separator = "Content-Type:";
-            $positionFile = strpos($dataFile, $separator);
+            $dataFile = stristr($dataFile, $separator);
+//            $positionFile = strpos($dataFile, $separator);
 //            echo '$positionFile: ' . $positionFile . '<br />';
-            $dataFile = substr($dataFile, $positionFile);
+//            $dataFile = substr($dataFile, $positionFile);
             $separator = 0x0D;
 //            echo substr($dataFile, 0, 500) . "<br /><br />";
             $positionFile = strpos($dataFile, $separator) + 4;
@@ -126,9 +140,11 @@ class Object extends MY_MainModel {
             if (fwrite($newFile, $dataFile)===FALSE) {
                 echo 'File writing fail.';
             }
+            // echo 'new file: '.substr($dataFile, 0, 300).'<br>';
             fclose($newFile);
             return false;
         }
+        echo 'Do NOT Sanitizing file. <br>';
         return true;
     }
 

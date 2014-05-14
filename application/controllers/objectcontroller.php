@@ -42,6 +42,9 @@ class ObjectController extends MY_MainController {
         $this->data['head_content'] = $attributes['head_content'];
         $this->data['container_name'] = $container;
         $this->data['object_name'] = $object;
+        // echo '$attributes[file_name]: '.$attributes['file_name'].'<br />';
+        //echo 'Encoded $attributes[file_name]: '.urlencode($attributes['file_name']).'<br>';
+        //$attr_decode_file_name = $attributes['file_name'];
         $this->data['file_on_server'] = $this->existFile($container, $object, $attributes['file_name']);
         $this->index();
     }

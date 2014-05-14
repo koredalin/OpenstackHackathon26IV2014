@@ -7,7 +7,12 @@
 <div>
     <p>Save object to the server: <a href="<?php echo $baseDirectory; ?>object/downloadFile/<?php echo $container_name.'/'.$object_name.'/'.$file_name; ?>">
     <?php echo $object_name . ' >>> ' . $file_name; ?></a></p>
-    <p><?php echo $head_content; ?></p>
+    <p><?php 
+        if (substr_count($head_content, '------------------------------') == 0) {
+            echo $head_content;
+        } 
+        ?>
+    </p>
 </div>
 <div class="under_line"></div>
 <div>
