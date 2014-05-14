@@ -1,11 +1,9 @@
 
 <?php
-/*
-  if (isset($action_result)) {
-  echo $action_result;
-  echo '<div class="under_line"></div>';
-  }
- */
+// var_dump($containers_list);
+if (isset($containers_list) || !empty($containers_list)) {
+    echo "<input type='hidden' id='cont_list' value='".json_encode($containers_list)."'>";
+}
 ?>
 
 <div>
@@ -15,9 +13,9 @@
                 <td colspan="2">Create a container </td>
             </tr>
             <tr>
-                <td><input type="text" name="new_container_name" placeholder="Container's name"></td>
+                <td><input type="text" name="new_container_name" placeholder="Container's name" id="new_container_name"></td>
                 <td>
-                    <button type="submit">Create Container</button>
+                    <button type="submit" id="create_container_btn">Create Container</button>
                 </td>
             </tr>
         </table>
@@ -41,3 +39,14 @@
         <?php echo $container_links; ?>
     </div>
 </div>
+
+
+
+<?php
+/*
+  if (isset($action_result)) {
+  echo $action_result;
+  echo '<div class="under_line"></div>';
+  }
+ */
+?>

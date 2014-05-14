@@ -26,6 +26,8 @@
         
         <!-- jQuery - the core -->
         <script src="<?php echo $baseDirectory; ?>application/views/includes/JS/libraries/jquery-2.1.0.min.js" type="text/javascript"></script>
+        <!-- Container JS files -->
+        <script src="<?php echo $baseDirectory; ?>application/views/includes/JS/objman.js" type="text/javascript"></script>
         
         <?php /*
         <!--jQuery UI-->

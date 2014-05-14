@@ -24,6 +24,7 @@ class SwiftController extends MY_MainController {
 
     public function getContainersList() {
         $containers = $this->model->getContainers();
+        $this->data['containers_list'] = $containers;
         $container_links = $this->formatLinks($containers, 3);
         $this->data['container_links'] = $container_links;
         $this->index();

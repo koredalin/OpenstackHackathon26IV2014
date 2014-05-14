@@ -1,24 +1,40 @@
 $(document).ready(function() {
-    $('form').submit(function(event) {
+    $('#upload_file_submit_btn').on('click', function(event) {
         var obj_list = $('#obj_list').val();
         if (typeof obj_list !== "undefined" && obj_list) {
             obj_list = $.parseJSON(obj_list);
-            if ($.inArray($('#new_object_name').val(), obj_list) > -1 && submit_count === 0) {
-                ++submit_count;
-                doObjectExist(event);
+            var new_object_name = $('#new_object_name').val();
+            if ($.inArray(new_object_name, obj_list) > -1 && $.inArray(new_object_name, exists) === -1) {
+                exists.push(new_object_name);
+                haltPost(event);
+                $('.validation_fail').html(
+                        '<p>Object with that name exists! Press "Upload file" button again for rewriting the object.</p>'
+                        );
+            }
+        }
+    });
+
+    $('#create_container_btn').on('click', function(event) {
+        var cont_list = $('#cont_list').val();
+        if (typeof cont_list !== "undefined" && cont_list) {
+            cont_list = $.parseJSON(cont_list);
+            var new_container_name = $('#new_container_name').val();
+            if ($.inArray(new_container_name, cont_list) > -1) {
+                exists.push(new_container_name);
+                haltPost(event);
+                $('.validation_fail').html(
+                        '<p>Container with that name exists!</p>'
+                        );
             }
         }
     });
 });
 
-var submit_count = 0;
+var exists = [];
 
-function doObjectExist(event) {
+function haltPost(event) {
     event.preventDefault();
-    console.log('Object exist');
-    $('.validation_fail').html(
-        '<p>Object with that name exists! Press "Upload file" button again for rewriting the object.</p>'
-    );
+    console.log(exists);
 
     return true;
 }

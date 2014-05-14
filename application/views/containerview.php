@@ -1,8 +1,3 @@
-
-        <!-- Container JS files -->
-        <script src="<?php echo $baseDirectory; ?>application/views/includes/JS/objman.js" type="text/javascript"></script>
-        
- 
         
 <?php
 if (!isset($objects_list) || empty($objects_list)) {
