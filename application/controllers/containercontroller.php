@@ -29,6 +29,7 @@ class ContainerController extends MY_MainController {
     
     public function getObjectsList($container='') {
         $objects=$this->model->getobjects($container);
+        $this->data['objects_list'] = $objects;
         $object_links = $this->formatLinks($container, $objects, 4);
         $this->data['object_links']=$object_links;
     }

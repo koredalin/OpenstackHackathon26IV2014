@@ -26,14 +26,11 @@
         
         <!-- jQuery - the core -->
         <script src="<?php echo $baseDirectory; ?>application/views/includes/JS/libraries/jquery-2.1.0.min.js" type="text/javascript"></script>
-        <!--jQuery UI-->
-        <?php /*
-        <script type="text/javascript" src="<?php echo $baseDirectory; ?>application/views/includes/JS/libraries/jquery-ui-1.10.4.custom.min.js"></script>
         
-        <!-- My JS files -->
-        <script src="<?php echo $baseDirectory; ?>application/views/includes/JS/quiz.js" type="text/javascript"></script>
+        <?php /*
+        <!--jQuery UI-->
+        <script type="text/javascript" src="<?php echo $baseDirectory; ?>application/views/includes/JS/libraries/jquery-ui-1.10.4.custom.min.js"></script>
         <script src="<?php echo $baseDirectory; ?>application/views/includes/JS/cms.js" type="text/javascript"></script>
-         * 
          /**/ ?>
 
     </head>

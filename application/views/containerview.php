@@ -1,7 +1,15 @@
 
+        <!-- Container JS files -->
+        <script src="<?php echo $baseDirectory; ?>application/views/includes/JS/objman.js" type="text/javascript"></script>
+        
+ 
+        
 <?php
 if (!isset($objects_list) || empty($objects_list)) {
     echo '<div><p>Delete container: <a href="' . $baseDirectory . 'container/delete/' . $container_name . '">' . $container_name . '</a></p></div>';
+}
+else {
+    echo "<input type='hidden' id='obj_list' value='".json_encode($objects_list)."'>";
 }
 ?>
 <div class="under_line"></div>
@@ -15,10 +23,10 @@ if (!isset($objects_list) || empty($objects_list)) {
                 <td><input type="file" name="file_upload_name" value="Choose the file"></td>
                 <td>
                     <input type="hidden" name="MAX_FILE_SIZE" value="25000" />
-                    <input type="text" name="object_name" placeholder="Object's name">
+                    <input type="text" name="object_name" placeholder="Object's name" id="new_object_name">
                 </td>
                 <td>
-                    <button type="submit">Upload file</button>
+                    <button type="submit" id="upload_file_submit_btn">Upload file</button>
                 </td>
             </tr>
         </table>
