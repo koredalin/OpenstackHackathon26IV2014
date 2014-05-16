@@ -1,7 +1,7 @@
         
 <?php
 if (!isset($objects_list) || empty($objects_list)) {
-    echo '<div><p>Delete container: <a href="' . $baseDirectory . 'container/delete/' . $container_name . '">' . $container_name . '</a></p></div>';
+    echo '<div class="del"><p class="rad7">Delete container: <a href="' . $baseDirectory . 'container/delete/' . $container_name . '"><strong>' . $container_name . '</strong></a></p></div>';
 }
 else {
     echo "<input type='hidden' id='obj_list' value='".json_encode($objects_list)."'>";
@@ -69,3 +69,5 @@ if (isset($upload_result) && !empty($upload_result)) {
         ?>
     </div>
 </div>
+
+<div class="height_distance"></div>

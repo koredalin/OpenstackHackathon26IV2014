@@ -74,7 +74,7 @@ class ContainerController extends MY_MainController {
                 $object_links.= '<p>';
             }
             if ($object) {
-                $object_links.= '<span class="contname_width"><a href="'.$this->data['baseDirectory']. 
+                $object_links.= '<span class="objname_width"><a href="'.$this->data['baseDirectory']. 
                         'object/select/'.$container. '/' . $object.'">'.$object.'</a></span>';
             }
             if ($col_count===$cols_num) {

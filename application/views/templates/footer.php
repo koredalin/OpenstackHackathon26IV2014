@@ -8,14 +8,9 @@
     </div>
 </div>
 
-<div class="height_distance"></div>
-
-<footer class="footer">
-    <div>
-        <p>&copy; Hristo Hristov / <a href="mailto:koredalin@gmail.com">koredalin@gmail.com</a>
-        </p>
-    </div>
-</footer>
+<div class="footer">
+    &copy; Hristo Hristov / <a href="mailto:koredalin@gmail.com">koredalin@gmail.com</a>
+</div>
 
 
 

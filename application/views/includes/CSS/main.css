@@ -1,17 +1,12 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
+
 /* 
     Created on : 2014-3-11, 16:18:21
     Author     : koredalin
 */
 
+/*
 .title-links {}
 
-.x-large {font-size: x-large;}
-.green {color: green;}
 .blue {color: blue;}
 .bold {font-weight: bold;}
 .display-block {display: block;}
@@ -24,12 +19,7 @@ and open the template in the editor.
 
 // html, body {width: 100%}
 
-.page-container {width: 100%; text-align: center;}
-.application-container {
-    width: 90%;
-    // dislplay: table; 
-    margin: 0 auto;
-}
+
 
 .content-quiz {border: 3px solid black; display: inline-block; width: 350px;}
 
@@ -72,17 +62,44 @@ and open the template in the editor.
     margin: 15px 0 15px 0;
 }
 
-.height_distance {
-    height: 45px;
+/**/
+
+html, body {
+    background-color: #444;
+    height: 100%;
 }
 
-footer {
+.page-container {
+    width: 100%; 
+    text-align: center;
+    height: 100%;
+}
+
+.application-container {
+    width: 90%;
+    display: run-in; 
+    margin: 0 auto;
+    background-color: #fff;
+    height: 100%;
+}
+
+
+.x-large {font-size: x-large;}
+.green {color: green;}
+
+.height_distance {
+    height: 47px;
+}
+
+.footer {
     background: #ffdddd;
     text-align: center;
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
+    padding: 10px 0 10px 0;
+    border-radius: 10px 10px 0 0;
 }
 .div-text {height: 40px;}
 .margin-tb-10 {margin: 10px 0 10px 0;}
@@ -94,11 +111,13 @@ footer {
 .auto_scroll-swift {
     overflow-y:scroll;
     height: 400px;
+    background-color: #fff;
 }
 
 .auto_scroll-container {
     overflow-y:scroll;
     height: 450px;
+    background-color: #fff;
 }
 
 .upload_fail {
@@ -113,14 +132,25 @@ footer {
     border: 1px solid #444;
 }
 
+
+.list .contname_width:hover {
+    background: #bbf;
+}
+
+.list .objname_width:hover {
+    background: #8f8;
+}
+
 .contname_width {
     width: 130px;
     display: inline-block;
+    border-radius: 5px;
 }
 
 .objname_width {
     width: 120px;
     display: inline-block;
+    border-radius: 5px;
 }
 
 .list p:nth-child(even) span {
@@ -131,4 +161,16 @@ footer {
     background-color: #f88;
     border-radius: 10px;
     // border: 1px solid #444;
+}
+
+.obj_link p:hover {
+    background-color: #faa;
+}
+
+.del p:hover {
+    background-color: #f55;
+}
+
+.rad7 {
+    border-radius: 7px
 }

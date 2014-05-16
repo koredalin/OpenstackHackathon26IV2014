@@ -1,5 +1,5 @@
 <div class="container-title">
-    <p class="x-large green"><?php echo $title; ?></p>
+    <div class="x-large green"><strong><?php echo $title; ?></strong></div>
     <p class="title-links">
         <?php
         if (isset($object_name)) {
@@ -7,11 +7,11 @@
             echo ' :: ';
             echo '<a href="' . $baseDirectory . 'container/select/' . $container_name . '">' . $container_name . '</a>';
             echo ' :: ';
-            echo 'Object: ' . $object_name . ' / ';
+            echo 'Object: <strong>' . $object_name . '</strong> / ';
         } else if (isset($container_name)) {
             echo '<a href="' . $baseDirectory . 'swift/getContainersList">Storages home</a>';
             echo ' :: Container: ';
-            echo $container_name . ' / ';
+            echo '<strong>'.$container_name . '</strong> / ';
         }
         if ($title !== 'Openstack authentication') {
             echo '<a href="' . $baseDirectory . 'auth/logout">Logout</a>';

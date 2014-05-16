@@ -87,8 +87,9 @@ class Object extends MY_MainModel {
         
         $fname = urldecode($this->temp_folder . $container . '---' . $object . '---' . $file_name);
         $logfh = fopen($fname, 'w+');
-        if ($logfh !== false) {
-            print "Opened the log file without errors";
+        if ($logfh == false) {
+            // print "Opened the log file without errors";
+            echo "Temp file is not opened!";
         }
         curl_setopt($session, CURLOPT_HEADER, false);
         curl_setopt($session, CURLOPT_FILE, $logfh);
@@ -124,7 +125,7 @@ class Object extends MY_MainModel {
         // echo '$file_header: '.$file_header.'<br>';
         // echo 'strpos_res: '.strpos($file_header, '------------------------------').'<br>';
         if (strpos($file_header, '------------------------------') === 0) {
-            echo 'Sanitizing file. <br>';
+            // echo 'Sanitizing file. <br>';
             $separator = "Content-Type:";
             $dataFile = stristr($dataFile, $separator);
 //            $positionFile = strpos($dataFile, $separator);
@@ -144,7 +145,7 @@ class Object extends MY_MainModel {
             fclose($newFile);
             return false;
         }
-        echo 'Do NOT Sanitizing file. <br>';
+        // echo 'Do NOT Sanitizing file. <br>';
         return true;
     }
 
