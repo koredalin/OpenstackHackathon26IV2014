@@ -1,6 +1,31 @@
 $(document).ready(function() {
     $('#upload_file_submit_btn').on('click', function(event) {
-        var obj_list = $('#obj_list').val();
+        doObjectExist(event);
+    });
+
+    $('#create_container_btn').on('click', function(event) {
+        doContainerExist(event);
+    });
+});
+
+var exists = [];
+
+function doContainerExist(event) {
+    var cont_list = $('#cont_list').val();
+        if (typeof cont_list !== "undefined" && cont_list) {
+            cont_list = $.parseJSON(cont_list);
+            var new_container_name = $('#new_container_name').val();
+            if ($.inArray(new_container_name, cont_list) > -1) {
+                haltPost(event);
+                $('.validation_fail').html(
+                        '<p>Container with that name exists!</p>'
+                        );
+            }
+        }
+}
+
+function doObjectExist(event) {
+    var obj_list = $('#obj_list').val();
         if (typeof obj_list !== "undefined" && obj_list) {
             obj_list = $.parseJSON(obj_list);
             var new_object_name = $('#new_object_name').val();
@@ -12,25 +37,7 @@ $(document).ready(function() {
                         );
             }
         }
-    });
-
-    $('#create_container_btn').on('click', function(event) {
-        var cont_list = $('#cont_list').val();
-        if (typeof cont_list !== "undefined" && cont_list) {
-            cont_list = $.parseJSON(cont_list);
-            var new_container_name = $('#new_container_name').val();
-            if ($.inArray(new_container_name, cont_list) > -1) {
-                exists.push(new_container_name);
-                haltPost(event);
-                $('.validation_fail').html(
-                        '<p>Container with that name exists!</p>'
-                        );
-            }
-        }
-    });
-});
-
-var exists = [];
+}
 
 function haltPost(event) {
     event.preventDefault();
