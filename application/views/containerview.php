@@ -10,21 +10,19 @@ else {
 <div class="under_line"></div>
 <div>
     <form action="<?php echo $baseDirectory; ?>container/uploadFile/<?php echo $container_name; ?>" method="POST" enctype="multipart/form-data">
-        <table class='hcenter'>
-            <tr>
+        <div>
                 <td colspan="3">Select a file for upload: </td>
-            </tr>
-            <tr>
-                <td><input type="file" name="file_upload_name" value="Choose the file"></td>
-                <td>
+        </div>
+        <div>
+            <span><input type="file" name="file_upload_name" value="Choose the file"></span>
+                <span>
                     <input type="hidden" name="MAX_FILE_SIZE" value="25000" />
                     <input type="text" name="object_name" placeholder="Object's name" id="new_object_name">
-                </td>
-                <td>
+                </span>
+                <span>
                     <button type="submit" id="upload_file_submit_btn">Upload file</button>
-                </td>
-            </tr>
-        </table>
+                </span>
+        </div>
     </form>
 
 </div>
