@@ -30,19 +30,24 @@ class AuthController extends MY_MainController {
                 array(
                     'username' => $username,
                     'password' => $password),
-                'tenantName' => 'hackathon'));
+                    'tenantName' => 'hackathon'
+                )
+            );
         $responce = $this->model->jsonCommunication($login_data);
         $responce = json_decode($responce, true);
 
-        if ($responce['error']['title'] === "Not Authorized") {
+        if ($responce['error']['title'] === "Not Authorized" || 
+                !isset($responce['access']['serviceCatalog'][5]['endpoints'][0]['publicURL']) || 
+                !isset($responce['access']['token']['id']) || 
+                !isset($responce['access']['token']['tenant']['id'])) {
             $this->data['validation_error'] = 'Incorrect username and password or the cloud do not respond.';
             $this->logout();
             return false;
         }
         
         $os_swift_link=$responce['access']['serviceCatalog'][5]['endpoints'][0]['publicURL'];
-        $os_token = trim($responce['access']['token']['id']);
-        $os_tenant_id = trim($responce['access']['token']['tenant']['id']);
+        $os_token = $responce['access']['token']['id'];
+        $os_tenant_id = $responce['access']['token']['tenant']['id'];
         $userdata = array(
             'os_username' => $username,
             'os_token' => $os_token,
