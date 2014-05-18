@@ -1,4 +1,13 @@
 <div class="under_line"></div>
+
+<div class="validation_fail">
+    <?php
+        if (isset($validation_error) && $validation_error) {
+            echo '<p>' . $validation_error . '</p>';
+        }
+    ?>
+</div>
+
 <form action="<?php echo $baseDirectory; ?>auth" method="post">
     <table>
         <tr>

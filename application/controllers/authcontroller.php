@@ -9,7 +9,7 @@ class AuthController extends MY_MainController {
     }
 
     public function index() {
-        if (isset($_POST['os_username']) && isset($_POST['os_password'])) {
+        if (isset($_POST['os_username']) || isset($_POST['os_password'])) {
             $this->success();
         } else {
             $this->login();
@@ -33,7 +33,14 @@ class AuthController extends MY_MainController {
                 'tenantName' => 'hackathon'));
         $responce = $this->model->jsonCommunication($login_data);
         $responce = json_decode($responce, true);
-        echo '<br /> <br />';
+        
+
+        if ($responce['error']['title'] === "Not Authorized") {
+            $this->data['validation_error'] = 'Incorrect username and password or the cloud do not respond.';
+            $this->logout();
+            return false;
+        }
+        
         $os_swift_link=$responce['access']['serviceCatalog'][5]['endpoints'][0]['publicURL'];
         $os_token = trim($responce['access']['token']['id']);
         $os_tenant_id = trim($responce['access']['token']['tenant']['id']);
@@ -43,8 +50,6 @@ class AuthController extends MY_MainController {
             'os_tenant_id' => $os_tenant_id,
             'os_swift_link' => $os_swift_link
          );
-//        var_dump($userdata);
-//        exit;
         // var_dump($userdata);
         if (!isset($_SESSION['userdata'])) {
             session_start();
@@ -57,7 +62,8 @@ class AuthController extends MY_MainController {
 
     public function logout() {
         $this->nativesession->set('userdata', array());
-        redirect('/auth');
+        $_POST = array();
+        $this->index();
     }
 
 }
