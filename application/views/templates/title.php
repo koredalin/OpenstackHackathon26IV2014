@@ -13,7 +13,7 @@
             echo ' :: Container: ';
             echo '<strong>'.$container_name . '</strong> / ';
         }
-        if ($title !== 'Openstack authentication') {
+        if ($title !== 'Openstack Authentication') {
             echo '<a href="' . $baseDirectory . 'auth/logout">Logout</a>';
         }
         ?>

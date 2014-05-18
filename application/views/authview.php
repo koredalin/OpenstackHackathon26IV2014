@@ -16,7 +16,7 @@
         </tr>
         <tr>
             <td>Enter password:</td>
-            <td><input type="text" name="os_password"></td>
+            <td><input type="password" name="os_password"></td>
         </tr>
         <tr>
             <td colspan="2">

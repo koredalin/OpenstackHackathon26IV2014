@@ -9,7 +9,7 @@ class ObjectController extends MY_MainController {
     }
 
     public function index() {
-        $this->data['title'] = 'Object managing';
+        $this->data['title'] = 'Object Managing';
         $this->load_view_navigation('header', 'title', 'objectview', 'footer', $this->data);
     }
 

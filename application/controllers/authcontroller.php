@@ -9,7 +9,7 @@ class AuthController extends MY_MainController {
     }
 
     public function index() {
-        if (isset($_POST['os_username']) || isset($_POST['os_password'])) {
+        if (isset($_POST['os_username']) && isset($_POST['os_password'])) {
             $this->success();
         } else {
             $this->login();
@@ -17,7 +17,7 @@ class AuthController extends MY_MainController {
     }
 
     public function login() {
-        $this->data['title'] = 'Openstack authentication';
+        $this->data['title'] = 'Openstack Authentication';
         $this->load_view_navigation('header', 'title', 'authview', 'footer', $this->data);
     }
 
@@ -33,7 +33,6 @@ class AuthController extends MY_MainController {
                 'tenantName' => 'hackathon'));
         $responce = $this->model->jsonCommunication($login_data);
         $responce = json_decode($responce, true);
-        
 
         if ($responce['error']['title'] === "Not Authorized") {
             $this->data['validation_error'] = 'Incorrect username and password or the cloud do not respond.';

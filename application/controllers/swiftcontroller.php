@@ -15,7 +15,7 @@ class SwiftController extends MY_MainController {
     }
 
     public function index() {
-        $this->data['title'] = 'Containers home';
+        $this->data['title'] = 'Containers Home';
         $userdata = $this->nativesession->get('userdata');
         // echo $userdata['os_token'].'<br />';
         // var_dump($this->nativesession->get('userdata'));

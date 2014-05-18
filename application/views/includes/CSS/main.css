@@ -149,9 +149,9 @@ html, body {
 }
 
 .objname_width {
-    width: 120px;
+    width: 140px;
     display: inline-block;
-    border-radius: 5px;
+    border-radius: 5px; 
 }
 
 .list p:nth-child(even) span {

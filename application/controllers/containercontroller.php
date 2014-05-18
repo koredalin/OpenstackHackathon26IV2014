@@ -9,7 +9,7 @@ class ContainerController extends MY_MainController {
     }
     
     public function index() {
-        $this->data['title'] = 'Container managing';
+        $this->data['title'] = 'Container Managing';
         $this->getObjectsList($this->data['container_name']);
         $this->load_view_navigation('header', 'title', 'containerview', 'footer', $this->data);
     }
@@ -55,9 +55,9 @@ class ContainerController extends MY_MainController {
     public function validateNewObjectName() {
         $this->load->library('form_validation');
         $validation = $this->form_validation;
-        $validation->set_rules('object_name', 'Object_name', 'trim|required|min_length[3]|max_length[20]|alpha_dash');
+        $validation->set_rules('object_name', 'Object_name', 'trim|required|min_length[3]|max_length[16]|alpha_dash');
         if ($validation->run() == FALSE) {
-            $this->data['validation_error'] = 'The new object\'s name should be between 3 and 20 alpha-numeric symbols!';
+            $this->data['validation_error'] = 'The new object\'s name should be between 3 and 16 alpha-numeric symbols!';
             return '';
         } else {
             return trim($this->input->post('object_name'));
