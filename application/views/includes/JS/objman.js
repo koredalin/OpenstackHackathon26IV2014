@@ -15,7 +15,7 @@ function doContainerExist(event) {
         if (typeof cont_list !== "undefined" && cont_list) {
             cont_list = $.parseJSON(cont_list);
             var new_container_name = $('#new_container_name').val();
-            if ($.inArray(new_container_name, cont_list) > -1) {
+            if (new_container_name && $.inArray(new_container_name, cont_list) > -1) {
                 haltPost(event);
                 $('.validation_fail').html(
                         '<p>Container with that name exists!</p>'
@@ -29,7 +29,7 @@ function doObjectExist(event) {
         if (typeof obj_list !== "undefined" && obj_list) {
             obj_list = $.parseJSON(obj_list);
             var new_object_name = $('#new_object_name').val();
-            if ($.inArray(new_object_name, obj_list) > -1 && $.inArray(new_object_name, exists) === -1) {
+            if (new_object_name && $.inArray(new_object_name, obj_list) > -1 && $.inArray(new_object_name, exists) === -1) {
                 exists.push(new_object_name);
                 haltPost(event);
                 $('.validation_fail').html(

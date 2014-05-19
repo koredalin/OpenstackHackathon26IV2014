@@ -59,7 +59,8 @@ class Container extends MY_MainModel {
     public function uploadFile($container = '', $object_name) {
         if (!$container || !isset($_FILES['file_upload_name']) || !isset($_FILES['file_upload_name']) ||
                 !$_FILES['file_upload_name']['name'] || !$this->input->post('object_name')) {
-            redirect('/swift/getContainersList');
+            return array('error' => 'Error: You have to select a file for upload!');
+            // redirect('/swift/getContainersList');
         }
 
         $filedata = $_FILES['file_upload_name']['tmp_name'];
@@ -67,7 +68,7 @@ class Container extends MY_MainModel {
         // Filesize validation
         if ($filesize > 20971520) {
             unlink($filedata);
-            return 'Error: Too large file for upload! Maximum size is 20MB.';
+            return array('error' => 'Error: Too large file for upload! Maximum size is 20MB.');
         }
         // Sanitizing the file name
         $filename = trim($_FILES['file_upload_name']['name']);
@@ -101,7 +102,7 @@ class Container extends MY_MainModel {
 //        var_dump($cloud_responce);
 //        exit;
 
-        $cloud_responce === '' ? $result['cloud_responce'] = true : $result['cloud_responce'] = false;
+        $cloud_responce === '' ? $result['cloud_responce'] = TRUE : $result['cloud_responce'] = FALSE;
         return $result;
     }
 
