@@ -6,10 +6,22 @@ class ObjectController extends MY_MainController {
         parent::__construct();
         $this->load->model("Object");
         $this->model = $this->Object;
+        $this->data['logout_link'] = ' / <a href="' . $this->data['baseDirectory'] . 'auth/logout">Logout</a>';
     }
 
     public function index() {
         $this->data['title'] = 'Object Managing';
+        $breadcrumbs = array(
+            array(
+                'link' => 'swift/getContainersList',
+                'text' => 'Storages home'),
+            array(
+                'link' => 'container/select/' . $this->data['container_name'],
+                'text' => $this->data['container_name']),
+            array(
+                'text' => 'Object: <strong>' . $this->data['object_name'] . '</strong>'),
+        );
+        $this->generateBreadcrumbs($breadcrumbs);
         $this->load_view_navigation('header', 'title', 'objectview', 'footer', $this->data);
     }
 

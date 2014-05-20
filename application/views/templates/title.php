@@ -2,23 +2,12 @@
     <div class="x-large green"><strong><?php echo $title; ?></strong></div>
     <p class="title-links">
         <?php
-        if (isset($object_name)) {
-            echo '<a href="' . $baseDirectory . 'swift/getContainersList">Storages home</a>';
-            echo ' :: ';
-            echo '<a href="' . $baseDirectory . 'container/select/' . $container_name . '">' . $container_name . '</a>';
-            echo ' :: ';
-            echo 'Object: <strong>' . $object_name . '</strong> / ';
-        } else if (isset($container_name)) {
-            echo '<a href="' . $baseDirectory . 'swift/getContainersList">Storages home</a>';
-            echo ' :: Container: ';
-            echo '<strong>'.$container_name . '</strong> / ';
-        }
-        if (strtolower($title) !== 'openstack authentication') {
-            echo '<a href="' . $baseDirectory . 'auth/logout">Logout</a>';
+        if (isset($breadcrumbs)) {
+            echo $breadcrumbs . $logout_link;
+        } else if (isset($logout_link)) {
+            echo $logout_link;
         }
         ?>
-
-
     </p>
     <div class="fatal_error">
         <?php

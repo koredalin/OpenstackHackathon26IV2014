@@ -6,11 +6,20 @@ class ContainerController extends MY_MainController {
         parent::__construct();
         $this->load->model('Container');
         $this->model = $this->Container;
+        $this->data['logout_link'] = ' / <a href="' . $this->data['baseDirectory'] . 'auth/logout">Logout</a>';
     }
 
     public function index() {
         $this->data['title'] = 'Container Managing';
         $this->getObjectsList($this->data['container_name']);
+        $breadcrumbs = array(
+            array(
+                'link' => 'swift/getContainersList',
+                'text' => 'Storages home'),
+            array(
+                'text' => 'Container: <strong>' . $this->data['container_name'] . '</strong>'),
+        );
+        $this->generateBreadcrumbs($breadcrumbs);
         $this->load_view_navigation('header', 'title', 'containerview', 'footer', $this->data);
     }
 

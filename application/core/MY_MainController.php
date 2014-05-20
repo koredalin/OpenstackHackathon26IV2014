@@ -4,7 +4,7 @@ class MY_MainController extends CI_Controller {
 
     protected $data = array();
     protected $navigation = '';
-    protected $model=null;
+    protected $model = null;
 
     public function __construct() {
         parent::__construct();
@@ -31,6 +31,29 @@ class MY_MainController extends CI_Controller {
     protected function echoResult($result) {
         $this->headerJson();
         echo json_encode($result);
+    }
+
+    public function generateBreadcrumbs(Array $breadcrumbs) {
+        $brcr_html = '';
+        
+        foreach ($breadcrumbs as $key => $row) {
+            $key>0 ? $brcr_html .= ' :: ' : false;
+            $brcr_html .= $this->generateBreadcrumbsLink($breadcrumbs[$key]);
+        }
+        
+        $this->data['breadcrumbs'] = $brcr_html;
+    }
+
+    private function generateBreadcrumbsLink(Array $brcr_level) {
+        $level_link = '';
+        if (isset($brcr_level['link'])) {
+            $level_link .= '<a href="' . $this->data['baseDirectory'] . $brcr_level['link'] . '">' . $brcr_level['text'] . '</a>';
+        }
+        else {
+            $level_link .= $brcr_level['text'];
+        }
+
+        return $level_link;
     }
 
 }

@@ -9,9 +9,9 @@ class SwiftController extends MY_MainController {
         if (!isset($_SESSION['userdata']) || empty($_SESSION['userdata'])) {
             redirect('/auth');
         }
-        $this->data['breadcrumbs'] = array();
         $this->load->model("Swift");
         $this->model = $this->Swift;
+        $this->data['logout_link'] = '<a href="' . $this->data['baseDirectory'] . 'auth/logout">Logout</a>';
     }
 
     public function index() {
